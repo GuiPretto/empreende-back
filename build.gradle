@@ -51,3 +51,10 @@ clean {
 		project.file('app.jar').delete()
 	}
 }
+
+gradle.taskGraph.whenReady {
+	taskGraph ->
+		if (taskGraph.hasTask(stage)) {
+			test.enabled = false
+		}
+}
